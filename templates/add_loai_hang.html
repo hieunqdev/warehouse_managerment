@@ -1,0 +1,50 @@
+{% extends 'navigation.html' %}
+{% block content %}
+<style>
+    h3 a{
+        padding-left: 20px;
+        text-decoration: none;
+        color: black;
+    }
+
+    h3 a:hover{
+        color: #5b80b2;
+    }
+
+    form{
+        padding: 20px;
+    }
+
+    form input{
+        border-radius: 5px;
+        padding: 7px;
+    }
+
+    form .luu{
+        padding: 10px 20px;
+        background-color: #79aec8;
+        color: white;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    form .luu:hover{
+        background-color: #417690;
+    }
+
+</style>
+
+<div id="add_loai_hang">
+    <h3><a href="{% url 'view_loai_hang' %}">Danh sách Loại hàng</a></h3>
+    <form action="" method="POST">
+        <p>Tạo loại hàng</p><br>
+        {% csrf_token %}
+        <p><label for="ma_loai_hang">Mã loại hàng</label></p>
+        <p><input type="text" name="ma_loai_hang" id="ma_loai_hang"></p>
+        <p><label for="ten_loai_hang">Tên loại hàng</label></p>
+        <p><input type="text" name="ten_loai_hang" id="ten_loai_hang"></p>
+        <p><input type="submit" value="XÁC NHẬN" class="luu"></p>
+    </form>
+</div>
+
+{% endblock content %}

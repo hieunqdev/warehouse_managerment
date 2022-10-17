@@ -1,0 +1,67 @@
+{% extends 'navigation.html' %}
+{% block content %}
+<style>
+    h3 a{
+        padding-left: 20px;
+        text-decoration: none;
+        color: black;
+    }
+
+    h3 a:hover{
+        color: #5b80b2;
+    }
+
+    form{
+        padding: 20px;
+    }
+
+    form input{
+        border-radius: 5px;
+        padding: 7px;
+    }
+
+    form .luu{
+        padding: 10px 20px;
+        background-color: #79aec8;
+        color: white;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    form .luu:hover{
+        background-color: #417690;
+    }
+
+</style>
+
+<div id="add_loai_hang">
+    <h3><a href="{% url 'view_nhan_vien' %}">Danh sách Nhân viên</a></h3>
+    <form action="" method="POST">
+        <p>Cập nhật nhân viên</p><br>
+        {% csrf_token %}
+        <p><label for="ma_nhan_vien">Mã nhân viên</label></p>
+        <p><input type="text" name="ma_nhan_vien" id="ma_nhan_vien" value="{{nhan_vien_can_cap_nhat.ma_nhan_vien}}"></p>
+        <p><label for="ho_ten">Họ tên</label></p>
+        <p><input type="text" name="ho_ten" id="ho_ten" value="{{nhan_vien_can_cap_nhat.ho_ten}}"></p>
+
+        <p><label for="gioi_tinh">Giới tính</label>
+            <select id="gioi_tinh" name="gioi_tinh">
+                <option value="0">Nam</option>
+                <option value="1">Nữ</option>
+            </select>
+        </p>
+
+        <p><label for="nam_sinh">Năm sinh</label></p>
+        <p><input type="number" name="nam_sinh" id="nam_sinh" value="{{nhan_vien_can_cap_nhat.nam_sinh}}"></p>
+
+        <p><label for="dia_chi">Địa chỉ</label></p>
+        <p><input type="text" name="dia_chi" id="dia_chi" value="{{nhan_vien_can_cap_nhat.dia_chi}}"></p>
+
+        <p><label for="so_dien_thoai">Số điện thoại</label></p>
+        <p><input type="number" name="so_dien_thoai" id="so_dien_thoai" value="{{nhan_vien_can_cap_nhat.so_dien_thoai}}"></p>
+
+        <p><input type="submit" value="XÁC NHẬN" class="luu"></p>
+    </form>
+</div>
+
+{% endblock content %}

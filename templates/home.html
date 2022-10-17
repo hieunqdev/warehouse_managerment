@@ -1,0 +1,42 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    #container_home{
+        margin: 20px;
+    }
+
+    #container_home h1{
+        color: #79aec8;
+    }
+
+    #content_home .menu_home{
+        width: 30%;
+        border: 2px solid #9370DB;
+        display: inline-block;
+        margin-bottom: 30px;
+        padding: 20px;
+    }
+
+    #content_home .menu_home h3{
+        color: #417690;
+    }
+</style>
+
+<div id="container_home">
+    <h1>Tổng quan kho (Số lượng kho: {{answer}})</h1>
+    <div id="content_home">
+        {% for kho in danh_sach_kho %}
+        <div class="menu_home">
+            <h3>[{{kho.ma_kho}}] {{kho.ten_kho}}</h3>
+            <p><b>Địa điểm:</b>  {{kho.ma_dia_diem}}</p>
+            <p><b>Số điện thoại:</b>  {{kho.so_dien_thoai}}</p>
+            <p><b>Loại hàng:</b> {{kho.ma_loai_hang}}</p>
+            <p><b>Nhân viên:</b> {{kho.ma_nhan_vien}}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

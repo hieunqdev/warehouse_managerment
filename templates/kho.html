@@ -1,0 +1,71 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block content %}
+<style>
+    caption{
+        color: #79aec8;
+    }
+
+    h3 a{
+        padding-left: 20px;
+        text-decoration: none;
+        color: black;
+    }
+
+    h3 a:hover{
+        color: #5b80b2;
+    }
+
+    tr button a{
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    tr button{
+        padding: 10px 20px;
+        background-color: #79aec8;
+        border-radius: 5px;
+        margin-left: 10px;
+    }
+
+    tr button:hover{
+        background-color: #417690;
+    }
+</style>
+
+
+<table>
+    <caption>Danh sách Kho</caption>
+    <h3><a href="{% url 'add_kho' %}">Tạo kho</a></h3>
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Mã kho</th>
+        <th>Tên kho</th>
+        <th>Số điện thoại</th>
+        <th>Mã địa điểm</th>
+        <th>Mã loại hàng</th>
+        <th>Mã nhân viên</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+            {% for kho in danh_sach_kho %}
+                <tr>
+                    <td style="color: #417690;">{{forloop.counter}}</td>
+                    <td>{{kho.ma_kho}}</td>
+                    <td>{{kho.ten_kho}}</td>
+                    <td>{{kho.so_dien_thoai}}</td>
+                    <td>{{kho.ma_dia_diem}}</td>
+                    <td>{{kho.ma_loai_hang}}</td>
+                    <td>{{kho.ma_nhan_vien}}</td>
+                    <td><button><a href="{% url 'update_kho' kho.id %}">CẬP NHẬT</a></button><button><a href="{% url 'delete_kho' kho.id %}">XÓA</a></button></td>
+                </tr>
+            {% endfor %}
+    </tbody>
+  </table>
+  
+  
+
+{% endblock content %}

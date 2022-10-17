@@ -1,0 +1,79 @@
+{% extends 'navigation.html' %}
+{% block content %}
+<style>
+    h3 a{
+        padding-left: 20px;
+        text-decoration: none;
+        color: black;
+    }
+
+    h3 a:hover{
+        color: #5b80b2;
+    }
+
+    form{
+        padding: 20px;
+    }
+
+    form input{
+        border-radius: 5px;
+        padding: 7px;
+    }
+
+    form .luu{
+        padding: 10px 20px;
+        background-color: #79aec8;
+        color: white;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    form .luu:hover{
+        background-color: #417690;
+    }
+
+</style>
+
+<div id="add_loai_hang">
+    <h3><a href="{% url 'view_kho' %}">Cập nhật Kho</a></h3>
+    <form action="" method="POST">
+        <p>Cập nhật kho</p><br>
+        {% csrf_token %}
+        <p><label for="ma_kho">Mã kho</label></p>
+        <p><input type="text" name="ma_kho" id="ma_kho" value="{{kho_can_cap_nhat.ma_kho}}"></p>
+
+        <p><label for="ten_kho">Tên kho</label></p>
+        <p><input type="text" name="ten_kho" id="ten_kho" value="{{kho_can_cap_nhat.ten_kho}}"></p>
+
+        <p><label for="so_dien_thoai">Số điện thoại</label></p>
+        <p><input type="text" name="so_dien_thoai" id="so_dien_thoai" value="{{kho_can_cap_nhat.so_dien_thoai}}"></p>
+
+        <p><label for="ma_dia_diem">Mã địa điểm</label>
+            <select id="ma_dia_diem" name="ma_dia_diem">
+                {% for dia_diem in danh_sach_dia_diem %}
+                <option value="{{dia_diem.id}}">{{dia_diem.ten_dia_diem}}</option>
+                {% endfor %}
+            </select>
+        </p>
+
+        <p><label for="ma_loai_hang">Mã loại hàng</label>
+            <select id="ma_loai_hang" name="ma_loai_hang">
+                {% for loai_hang in danh_sach_loai_hang %}
+                <option value="{{loai_hang.id}}">{{loai_hang.ten_loai_hang}}</option>
+                {% endfor %}
+            </select>
+        </p>
+
+        <p><label for="ma_nhan_vien">Mã nhân viên</label>
+            <select id="ma_nhan_vien" name="ma_nhan_vien">
+                {% for nhan_vien in danh_sach_nhan_vien %}
+                <option value="{{nhan_vien.id}}">{{nhan_vien.ho_ten}}</option>
+                {% endfor %}
+            </select>
+        </p>        
+
+        <p><input type="submit" value="XÁC NHẬN" class="luu"></p>
+    </form>
+</div>
+
+{% endblock content %}

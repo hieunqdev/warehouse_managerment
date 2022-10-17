@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/css/navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/loai_hang.css' %}">
+    <title>Document</title>
+</head>
+<body>
+      <div class="container topBotomBordersOut">
+        <a href="{% url 'home' %}">Tổng quan</a>
+        <a href="{% url 'view_loai_hang' %}">Loại hàng</a>
+        <a href="{% url 'view_mat_hang' %}">Mặt hàng</a>
+        <a href="{% url 'view_nhan_vien' %}">Nhân viên</a>
+        <a href="{% url 'view_dia_diem' %}">Địa điểm</a>
+        <a href="{% url 'view_kho' %}">Kho</a>
+        <a href="{% url 'logout' %}">Đăng xuất</a>
+      </div>
+      {% block content %}
+
+      {% endblock content %}
+</body>
+</html>

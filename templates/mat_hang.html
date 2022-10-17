@@ -1,0 +1,67 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block content %}
+<style>
+    caption{
+        color: #79aec8;
+    }
+
+    h3 a{
+        padding-left: 20px;
+        text-decoration: none;
+        color: black;
+    }
+
+    h3 a:hover{
+        color: #5b80b2;
+    }
+
+    tr button a{
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    tr button{
+        padding: 10px 20px;
+        background-color: #79aec8;
+        border-radius: 5px;
+        margin-left: 10px;
+    }
+
+    tr button:hover{
+        background-color: #417690;
+    }
+</style>
+
+
+<table>
+    <caption>Danh sách Mặt hàng</caption>
+    <h3><a href="{% url 'add_mat_hang' %}">Tạo Mặt hàng</a></h3>
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Mã mặt hàng</th>
+        <th>Mã loại hàng</th>
+        <th>Tên hàng</th>
+        <th>Trạng thái</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+            {% for mat_hang in danh_sach_mat_hang %}
+                <tr>
+                    <td style="color: #417690;">{{forloop.counter}}</td>
+                    <td>{{mat_hang.ma_mat_hang}}</td>
+                    <td>{{mat_hang.ma_loai_hang}}</td>
+                    <td>{{mat_hang.ten_hang}}</td>
+                    <td>{{mat_hang.trang_thai}}</td>
+                    <td><button><a href="{% url 'update_mat_hang' mat_hang.id %}">CẬP NHẬT</a></button><button><a href="{% url 'delete_mat_hang' mat_hang.id %}">XÓA</a></button></td>
+                </tr>
+            {% endfor %}
+    </tbody>
+  </table>
+  
+  
+
+{% endblock content %}

@@ -1,0 +1,66 @@
+{% extends 'navigation.html' %}
+{% block content %}
+<style>
+    h3 a{
+        padding-left: 20px;
+        text-decoration: none;
+        color: black;
+    }
+
+    h3 a:hover{
+        color: #5b80b2;
+    }
+
+    form{
+        padding: 20px;
+    }
+
+    form input{
+        border-radius: 5px;
+        padding: 7px;
+    }
+
+    form .luu{
+        padding: 10px 20px;
+        background-color: #79aec8;
+        color: white;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    form .luu:hover{
+        background-color: #417690;
+    }
+
+</style>
+
+<div id="add_loai_hang">
+    <h3><a href="{% url 'view_mat_hang' %}">Danh sách Mặt hàng</a></h3>
+    <form action="" method="POST">
+        <p>Cập nhật mặt hàng</p><br>
+        {% csrf_token %}
+        <p><label for="ma_mat_hang">Mã mặt hàng</label></p>
+        <p><input type="text" name="ma_mat_hang" id="ma_mat_hang" value="{{mat_hang_can_cap_nhat.ma_mat_hang}}"></p>
+
+        <p><label for="ma_loai_hang">Mã loại hàng</label>
+            <select id="ma_loai_hang" name="ma_loai_hang">
+                {% for loai_hang in danh_sach_loai_hang %}
+                <option value="{{loai_hang.id}}">{{loai_hang.ten_loai_hang}}</option>
+                {% endfor %}
+            </select>
+        </p>
+
+        <p><label for="ten_hang">Tên hàng</label></p>
+        <p><input type="text" name="ten_hang" id="ten_hang" value="{{mat_hang_can_cap_nhat.ten_hang}}"></p>
+        
+        <label for="trang_thai">Trạng thái</label>
+            <select id="trang_thai" name="trang_thai">
+                <option value="1">Còn hàng</option>
+                <option value="0">Hết hàng</option>
+            </select>
+        </p>
+        <p><input type="submit" value="XÁC NHẬN" class="luu"></p>
+    </form>
+</div>
+
+{% endblock content %}

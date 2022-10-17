@@ -1,0 +1,63 @@
+{% extends 'navigation.html' %}
+{% block content %}
+<style>
+    h3 a{
+        padding-left: 20px;
+        text-decoration: none;
+        color: black;
+    }
+
+    h3 a:hover{
+        color: #5b80b2;
+    }
+
+    form{
+        padding: 20px;
+    }
+
+    form input{
+        border-radius: 5px;
+        padding: 7px;
+    }
+
+    form .luu{
+        padding: 10px 20px;
+        background-color: #79aec8;
+        color: white;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    form .luu:hover{
+        background-color: #417690;
+    }
+
+</style>
+
+<div id="add_loai_hang">
+    <h3><a href="{% url 'view_dia_diem' %}">Danh sách Địa điểm</a></h3>
+    <form action="" method="POST">
+        <p>Tạo địa điểm</p><br>
+        {% csrf_token %}
+        <p><label for="ma_dia_diem">Mã địa điểm</label></p>
+        <p><input type="text" name="ma_dia_diem" id="ma_dia_diem"></p>
+
+        <p><label for="ten_dia_diem">Tên địa điểm</label></p>
+        <p><input type="text" name="ten_dia_diem" id="ten_dia_diem"></p>
+
+        <p><label for="dia_chi_dia_diem">Địa chỉ địa điểm</label></p>
+        <textarea name="dia_chi_dia_diem" id="dia_chi_dia_diem" cols="30" rows="10"></textarea>
+
+        <p><label for="ma_nhan_vien">Mã nhân viên</label>
+            <select id="ma_nhan_vien" name="ma_nhan_vien">
+                {% for nhan_vien in danh_sach_nhan_vien %}
+                <option value="{{nhan_vien.id}}">{{nhan_vien.ho_ten}}</option>
+                {% endfor %}
+            </select>
+        </p>
+
+        <p><input type="submit" value="XÁC NHẬN" class="luu"></p>
+    </form>
+</div>
+
+{% endblock content %}

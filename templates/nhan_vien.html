@@ -1,0 +1,75 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block content %}
+<style>
+    caption{
+        color: #79aec8;
+    }
+
+    h3 a{
+        padding-left: 20px;
+        text-decoration: none;
+        color: black;
+    }
+
+    h3 a:hover{
+        color: #5b80b2;
+    }
+
+    tr button a{
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    tr button{
+        padding: 10px 20px;
+        background-color: #79aec8;
+        border-radius: 5px;
+        margin-left: 10px;
+    }
+
+    tr button:hover{
+        background-color: #417690;
+    }
+</style>
+
+
+<table>
+    <caption>Danh sách Nhân viên</caption>
+    <h3><a href="{% url 'add_nhan_vien' %}">Tạo Nhân viên</a></h3>
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Mã nhân viên</th>
+        <th>Họ tên</th>
+        <th>Giới tính</th>
+        <th>Năm sinh</th>
+        <th>Địa chỉ</th>
+        <th>Số điện thoại</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+            {% for nhan_vien in danh_sach_nhan_vien %}
+                <tr>
+                    <td style="color: #417690;">{{forloop.counter}}</td>
+                    <td>{{nhan_vien.ma_nhan_vien}}</td>
+                    <td>{{nhan_vien.ho_ten}}</td>
+                    {% if nhan_vien.gioi_tinh == "0" %}
+                    <td>Nam</td>
+                    {% else %}
+                    <td>Nữ</td>
+                    {% endif %}
+                    <td>{{nhan_vien.nam_sinh}}</td>
+                    <td>{{nhan_vien.dia_chi}}</td>
+                    <td>{{nhan_vien.so_dien_thoai}}</td>
+                    <td><button><a href="{% url 'update_nhan_vien' nhan_vien.id %}">CẬP NHẬT</a></button><button><a href="{% url 'delete_nhan_vien' nhan_vien.id %}">XÓA</a></button></td>
+                </tr>
+            {% endfor %}
+    </tbody>
+  </table>
+  
+  
+
+{% endblock content %}
